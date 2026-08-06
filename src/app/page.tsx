@@ -2,11 +2,13 @@
 
 import { Container } from '@/components/Container';
 import { Header } from '@/components/header';
-import { PostList } from '@/components/PostList';
+import { PostsList } from '@/components/PostList';
 import { SpinLoader } from '@/components/SpinLoader';
-import Link from 'next/link';
 import { Suspense } from 'react';
-import  Image  from 'next/image';
+
+import { PostHeading } from '@/components/PostHeading';
+import { PostCoverImage } from '@/components/PostCoverImage';
+
 
 
 
@@ -18,14 +20,30 @@ export default async function HomePage() {
        <Header/>
 
        <section className="grid grid-cls-1 gap-8 mb-16 sm:grid-cols-2 group:">
-        <Link href="#" className="w-full h-full overflow-hidden rounded-xl ">
-         < Image src="/imagem/imagem1.jpg" alt="titulo do post" width={1200} height={720} priority
-         className="hover:scale-105 transition" />
 
-        </Link>
+          <PostCoverImage
+          linkProps={{
+            href: '/post/asdfasdf',
+          }}
+          imageProps={{
+            width: 1200,
+            height: 720,
+            src: '/imagem/bryen_9.png',
+            alt: 'Alt da imagem',
+            priority: true,
+          }}
+        />
 
 
-        <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi cumque commodi quisquam assumenda autem voluptatem qui vitae officia officiis blanditiis. Fugiat asperiores placeat a, iste vel nobis similique soluta ipsam.</div>
+        <div className="flex flex-col gap-4 justify-center">
+            <time className='text-slate-600 block text-sm '   dateTime="2026-08-06">20/08/2026  14:00</time>
+
+
+                <PostHeading as="h2" url="#">
+                  lorem ipsum dolor sit amet
+                </PostHeading>
+
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi cumque commodi quisquam assumenda autem voluptatem qui vitae officia officiis blanditiis. Fugiatasperiores placeat a, iste vel nobis similique soluta ipsam.</div>
 
 
 
@@ -34,7 +52,7 @@ export default async function HomePage() {
 
 
     <Suspense fallback={<SpinLoader/>}>
-    <PostList />
+    <PostsList/>
        </Suspense>
 
        <footer><h1 className="text-6xl font-bold">footer</h1></footer>
